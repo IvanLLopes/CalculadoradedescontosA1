@@ -1,6 +1,4 @@
-
 package javaapplication1;
-
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,54 +6,95 @@ import java.util.Scanner;
 public class JavaApplication1 {
 
     public static void main(String[] args) {
-        double[] historicoCompras = new double[10];
+        double[] historicoDescontos = new double[10];
         int contadorPosicao = 0;
         while (true) {
-        System.out.println("""
-                           Escolha uma opcao:
+            System.out.println("""
+                           === CALCULADORA DE DESCONTOS ===    
                            1. Calcular desconto
                            2. Ver historico
                            3. Ver estatisticas
                            4. Sair
+                           Escolha uma opcao:    
                            """);
-        Scanner scanner = new Scanner(System.in);
-        int opcaoinicial = scanner.nextInt();
-            if (opcaoinicial == 4){
-                break;   
-                        }
-                switch(opcaoinicial) {
-                    case 1: System.out.println("Insira o valor da compra: ");
-                            double valordacompra = scanner.nextDouble();
-                            int tipocliente = 0;
-                            double desconto = 0;
-                            while (tipocliente != 1 && tipocliente != 2) {
-                                System.out.println("Digite 1 para cliente Regular (5% de desconto) "
-                                        + "ou 2 para cliente VIP (10% de desconto: ");
-                                tipocliente = scanner.nextInt();
-
-            switch (tipocliente) {
-                case 1 -> {
-                    desconto = 0.95;
-                    System.out.println(desconto);
-                }
-                case 2 -> desconto = 0.90;
-                default -> System.out.println("Entrada Invalida");
+            Scanner scanner = new Scanner(System.in);
+            int opcaoinicial = scanner.nextInt();
+            if (opcaoinicial == 4) {
+                break;
             }
-                            }
-                            double precofinal = ( desconto) * valordacompra;
-                            historicoCompras[contadorPosicao] = precofinal;
-                            contadorPosicao ++;
-                            System.out.println("O valor final da compra é: " + precofinal);
+            switch (opcaoinicial) {
+                case 1:
+                    System.out.println("""
+                                       [NOVA COMPRA]
+                                       Insira o valor da compra: 
+                                       """);
+                    double valordacompra = scanner.nextDouble();
+                    int tipocliente = 0;
+                    double desconto = 0;
+                    while (tipocliente != 1 && tipocliente != 2) {
+                        System.out.println("Digite 1 para cliente Regular (5% de desconto) "
+                                + "ou 2 para cliente VIP (10% de desconto: ");
+                        tipocliente = scanner.nextInt();
+                        System.out.println("\n[RESULTADO]");
+                        System.out.println("Valor original: " + valordacompra);
 
-                    case 2: System.out.println(Arrays.toString(historicoCompras));        
-                  
-                       
-                            
-                        
-        }
+                        switch (tipocliente) {
+                            case 1:
+                                desconto = valordacompra * 0.05;
+                                System.out.println("Desconto(5%): R$" + String.format("%.2f", desconto));
+                                break;
+                            case 2:
+                                desconto = valordacompra * 0.10;
+                                System.out.println("Desconto(10%): R$" + String.format("%.2f", desconto));
+                                break;
+                            default:
+                                System.out.println("Entrada Invalida");
+                        }
+                    }
+                    double precofinal = valordacompra - desconto;
+                    historicoDescontos[contadorPosicao] = desconto;
+                    contadorPosicao++;
+                    System.out.println("Valor final: R$" + String.format("%.2f", precofinal));
+                    System.out.println("");
+                    break;
+
+                case 2:
+                    System.out.println("[HISTORICO]");
+                    for (int i = 0; i < contadorPosicao; i++) {
+
+                        System.out.println(i + "R$" + historicoDescontos[i]);
+
+                    }
+                    break;
+                case 3:
+                    double totalDesconto = 0;
+                    double maiorDesconto = historicoDescontos[0];
+                    double menorDesconto = 0;
+                    double media = 0;
+                    for (int i = 0; i < contadorPosicao; i++) {
+                        totalDesconto += historicoDescontos[i];
+                        if (maiorDesconto < historicoDescontos[i]) {
+                            maiorDesconto = historicoDescontos[i];
+                        }
+                        if (menorDesconto > historicoDescontos[i]) {
+                            menorDesconto = historicoDescontos[i];
+                        }
+
+                    }
+                    media = totalDesconto / contadorPosicao;
+                    System.out.println("[ESTATÍSTICAS]");
+                    System.out.println("Total de descontos: R$" + String.format("%.2f", totalDesconto));
+                    System.out.println("Maior desconto: R$" + String.format("%.2f", maiorDesconto));
+                    System.out.println("Menor desconto: R$" + String.format("%.2f", menorDesconto));
+                    System.out.println("Media: " + String.format("%.2f", media));
+                    break;
+                
+                default: 
+                    System.out.println("Entrada Invalida");  
+
+            }
         }
 
     }
-    
-}
 
+}
