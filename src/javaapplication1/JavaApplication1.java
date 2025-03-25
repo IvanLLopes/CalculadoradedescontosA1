@@ -6,37 +6,33 @@ import java.util.Scanner;
 public class JavaApplication1 {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         double[] historicoDescontos = new double[10];
         int contadorPosicao = 0;
         while (true) {
-            System.out.println("""
-                           === CALCULADORA DE DESCONTOS ===    
-                           1. Calcular desconto
-                           2. Ver historico
-                           3. Ver estatisticas
-                           4. Sair
-                           Escolha uma opcao:    
-                           """);
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("=== CALCULADORA DE DESCONTOS ===");
+            System.out.println("1. Calcular desconto");
+            System.out.println("2. Ver histórico");
+            System.out.println("3. Ver estatísticas");
+            System.out.println("4. Sair");
+            System.out.print("Escolha uma opção: ");                       
             int opcaoinicial = scanner.nextInt();
+            System.out.println("");
             if (opcaoinicial == 4) {
                 break;
             }
             switch (opcaoinicial) {
                 case 1:
-                    System.out.println("""
-                                       [NOVA COMPRA]
-                                       Insira o valor da compra: 
-                                       """);
-                    double valordacompra = scanner.nextDouble();
+                    System.out.println("[NOVA COMPRA]");
+                    System.out.print("Valor da compra: R$");
+                    double valordacompra = scanner.nextDouble();                   
                     int tipocliente = 0;
                     double desconto = 0;
                     while (tipocliente != 1 && tipocliente != 2) {
-                        System.out.println("Digite 1 para cliente Regular (5% de desconto) "
-                                + "ou 2 para cliente VIP (10% de desconto: ");
+                        System.out.print("Cliente Regular(1) Ou Cliente Vip(2)? ");                        
                         tipocliente = scanner.nextInt();
                         System.out.println("\n[RESULTADO]");
-                        System.out.println("Valor original: " + valordacompra);
+                        System.out.println("Valor original: " + String.format("%.2f", valordacompra));
 
                         switch (tipocliente) {
                             case 1:
@@ -62,15 +58,16 @@ public class JavaApplication1 {
                     System.out.println("[HISTORICO]");
                     for (int i = 0; i < contadorPosicao; i++) {
 
-                        System.out.println(i + "R$" + historicoDescontos[i]);
-
+                        System.out.println((i+1) + ". R$" + String.format("%.2f", historicoDescontos[i]));
+                        
                     }
-                    break;
+                    System.out.println("");
+                    break;                    
                 case 3:
                     double totalDesconto = 0;
                     double maiorDesconto = historicoDescontos[0];
-                    double menorDesconto = 0;
-                    double media = 0;
+                    double menorDesconto = historicoDescontos[0];
+                    double media;
                     for (int i = 0; i < contadorPosicao; i++) {
                         totalDesconto += historicoDescontos[i];
                         if (maiorDesconto < historicoDescontos[i]) {
@@ -87,6 +84,7 @@ public class JavaApplication1 {
                     System.out.println("Maior desconto: R$" + String.format("%.2f", maiorDesconto));
                     System.out.println("Menor desconto: R$" + String.format("%.2f", menorDesconto));
                     System.out.println("Media: " + String.format("%.2f", media));
+                    System.out.println("");
                     break;
                 
                 default: 
