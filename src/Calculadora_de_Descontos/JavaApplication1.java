@@ -1,4 +1,4 @@
-package javaapplication1;
+package Calculadora_de_Descontos;
 
 import java.util.Arrays;
 import java.util.Scanner;
