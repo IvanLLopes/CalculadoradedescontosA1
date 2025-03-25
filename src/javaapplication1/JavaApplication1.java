@@ -15,7 +15,7 @@ public class JavaApplication1 {
             System.out.println("2. Ver histórico");
             System.out.println("3. Ver estatísticas");
             System.out.println("4. Sair");
-            System.out.print("Escolha uma opção: ");                       
+            System.out.print("Escolha uma opção: ");
             int opcaoinicial = scanner.nextInt();
             System.out.println("");
             if (opcaoinicial == 4) {
@@ -25,11 +25,11 @@ public class JavaApplication1 {
                 case 1:
                     System.out.println("[NOVA COMPRA]");
                     System.out.print("Valor da compra: R$");
-                    double valordacompra = scanner.nextDouble();                   
+                    double valordacompra = scanner.nextDouble();
                     int tipocliente = 0;
                     double desconto = 0;
                     while (tipocliente != 1 && tipocliente != 2) {
-                        System.out.print("Cliente Regular(1) Ou Cliente Vip(2)? ");                        
+                        System.out.print("Cliente Regular(1) Ou Cliente Vip(2)? ");
                         tipocliente = scanner.nextInt();
                         System.out.println("\n[RESULTADO]");
                         System.out.println("Valor original: " + String.format("%.2f", valordacompra));
@@ -58,11 +58,11 @@ public class JavaApplication1 {
                     System.out.println("[HISTORICO]");
                     for (int i = 0; i < contadorPosicao; i++) {
 
-                        System.out.println((i+1) + ". R$" + String.format("%.2f", historicoDescontos[i]));
-                        
+                        System.out.println((i + 1) + ". R$" + String.format("%.2f", historicoDescontos[i]));
+
                     }
                     System.out.println("");
-                    break;                    
+                    break;
                 case 3:
                     double totalDesconto = 0;
                     double maiorDesconto = historicoDescontos[0];
@@ -86,9 +86,9 @@ public class JavaApplication1 {
                     System.out.println("Media: " + String.format("%.2f", media));
                     System.out.println("");
                     break;
-                
-                default: 
-                    System.out.println("Entrada Invalida");  
+
+                default:
+                    System.out.println("Entrada Invalida");
 
             }
         }
