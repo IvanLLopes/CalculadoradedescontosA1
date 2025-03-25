@@ -2,6 +2,7 @@
 package javaapplication1;
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class JavaApplication1 {
@@ -32,23 +33,21 @@ public class JavaApplication1 {
                                         + "ou 2 para cliente VIP (10% de desconto: ");
                                 tipocliente = scanner.nextInt();
 
-                                if (tipocliente == 1) {
-                                    desconto = 0.95;
-                                    System.out.println(desconto);
-                                }
-                                else if (tipocliente == 2) {
-                                    desconto = 0.90;
-                                } 
-                                else { 
-                                    System.out.println("Entrada Invalida");
-                                }
+            switch (tipocliente) {
+                case 1 -> {
+                    desconto = 0.95;
+                    System.out.println(desconto);
+                }
+                case 2 -> desconto = 0.90;
+                default -> System.out.println("Entrada Invalida");
+            }
                             }
                             double precofinal = ( desconto) * valordacompra;
                             historicoCompras[contadorPosicao] = precofinal;
                             contadorPosicao ++;
                             System.out.println("O valor final da compra é: " + precofinal);
 
-                    case 2: System.out.println(historicoCompras);        
+                    case 2: System.out.println(Arrays.toString(historicoCompras));        
                   
                        
                             
